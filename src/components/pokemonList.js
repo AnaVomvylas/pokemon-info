@@ -21,6 +21,7 @@ export default function PokemonList() {
 
     return (
         <div >
+            <h2>Available Pokemon</h2>
             {availablePokemon.map((pokemon) =>
                 {
                     return <div key={`${pokemon.id}`}>
