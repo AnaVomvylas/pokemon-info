@@ -9,10 +9,10 @@ export default function CapturedPokemon() {
     } = useContext(PokemonContext);
 
     const removePokemonFromList = pokemon => {
-        capturedPokemon.filter(x => x !== pokemon);
+        return capturedPokemon.filter(x => x !== pokemon);
     };
 
-    const release = pokemon => () => {
+    const release = pokemon => {
         setPokemon([...availablePokemon, pokemon]);
         setCapturedPokemon(removePokemonFromList(pokemon));
     };
@@ -24,7 +24,7 @@ export default function CapturedPokemon() {
                 <div key={`${pokemon.id}`}>
                     <div>
                         <span>{pokemon.name}</span>
-                        <button onClick={release(pokemon)}>-</button>
+                        <button onClick={() => release(pokemon)}>-</button>
                     </div>
                 </div>
             )}
