@@ -1,0 +1,25 @@
+import React, { useContext, useState } from 'react';
+import { PokemonContext } from './contextProvider';
+
+const PokemonForm = () => {
+    const { availablePokemon, capturedPokemon, addPokemon } = useContext(PokemonContext);
+    const [pokemonName, setPokemonName] = useState();
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        addPokemon({id: getNextID(), name: pokemonName});
+    }
+
+    const getNextID = () => Math.max([...availablePokemon, ...capturedPokemon].map(x => x.id)) + 1;
+
+    const handleNameOnChange = (e) => setPokemonName(e.target.value);
+
+    return (
+        <form onSubmit={handleFormSubmit}>
+            <input type="text" placeholder="Pokemon name" onChange={handleNameOnChange} />
+            <input type="submit" value="Add" />
+        </form>
+    )
+};
+
+export default PokemonForm;
