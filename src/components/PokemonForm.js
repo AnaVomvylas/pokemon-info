@@ -7,10 +7,10 @@ const PokemonForm = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        addPokemon({id: getNextID(), name: pokemonName});
+        addPokemon({ id: getNextID(), name: pokemonName });
     }
 
-    const getNextID = () => Math.max([...availablePokemon, ...capturedPokemon].map(x => x.id)) + 1;
+    const getNextID = () => Math.max.apply(null, [...availablePokemon, ...capturedPokemon].map(x => x.id)) + 1;
 
     const handleNameOnChange = (e) => setPokemonName(e.target.value);
 
