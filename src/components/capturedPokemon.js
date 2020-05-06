@@ -1,21 +1,8 @@
 import React, { useContext } from 'react';
 import { PokemonContext } from './contextProvider';
 
-export default function CapturedPokemon() {
-    const { availablePokemon,
-        setPokemon,
-        capturedPokemon,
-        setCapturedPokemon
-    } = useContext(PokemonContext);
-
-    const removePokemonFromList = pokemon => {
-        return capturedPokemon.filter(x => x !== pokemon);
-    };
-
-    const release = pokemon => {
-        setPokemon([...availablePokemon, pokemon]);
-        setCapturedPokemon(removePokemonFromList(pokemon));
-    };
+const CapturedPokemon = () => {
+    const { capturedPokemon, release } = useContext(PokemonContext);
 
     return (
         <div className="pokedex">
@@ -30,4 +17,6 @@ export default function CapturedPokemon() {
             )}
         </div >
     )
-}
+};
+
+export default CapturedPokemon;
