@@ -1,11 +1,8 @@
 import { useReducer } from 'react';
-import { CAPTURE, RELEASE, ADD } from './actions';
+import { CAPTURE, RELEASE, ADD, ADDVIAAPI } from './actions';
 
 const defaultState = {
-    availablePokemon: [
-        { id: 1, name: 'Bulbasaur' },
-        { id: 2, name: 'Charmander' },
-        { id: 3, name: 'Squirtle' }],
+    availablePokemon: [],
     capturedPokemon: []
 };
 
@@ -24,6 +21,11 @@ const addPokemon = (state, pokemon) => ({
     capturedPokemon: state.capturedPokemon
 });
 
+const updatePokemonList = (state, pokemons) => ({
+    ...state,
+    availablePokemon: pokemons
+});
+
 const pokemonReducer = (state, action) => {
     switch (action.type) {
         case CAPTURE:
@@ -32,6 +34,8 @@ const pokemonReducer = (state, action) => {
             return release(state, action.pokemon);
         case ADD:
             return addPokemon(state, action.pokemon);
+        case ADDVIAAPI:
+            return updatePokemonList(state, action.pokemons);
         default:
             return state;
     }

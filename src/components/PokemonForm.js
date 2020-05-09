@@ -17,10 +17,10 @@ const PokemonForm = () => {
     return (
         <form onSubmit={handleFormSubmit}>
             <h2>Add a new Pokemon</h2>
-            <form>
+            <div>
                 <input type="text" placeholder="Pokemon name" onChange={handleNameOnChange} />
                 <input type="submit" value="Add" />
-            </form>
+            </div>
         </form>
     )
 };
